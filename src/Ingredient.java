@@ -1,2 +1,2 @@
-public class Ingredient {
+public class Ingredient extends Nutrition {
 }
