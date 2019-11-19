@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 public class Window extends JFrame {
     private JFrame orderFrame = new JFrame("Order");
     private JFrame checkoutFrame = new JFrame("Check Out");
-    JButton addItem; JButton checkout;
     Window() {
         super("Eddie's burgers");
         setLayout(new FlowLayout());
