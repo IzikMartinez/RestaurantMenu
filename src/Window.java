@@ -23,16 +23,31 @@ public class Window extends JFrame {
         return button;
     }
 
-    private ActionListener OrderEvent = e -> {
+    private ActionListener addBurger = e -> {
+        MenuItem item = new Hamburger();
+        item.addTopping();
+        item.sumOfNutrients();
         JTextArea textArea = new JTextArea();
+        textArea.setEditable(false);
+        textArea.append(item.toString());
+        textArea.setVisible(true);
+        orderFrame.add(textArea);
+    };
+
+    private ActionListener OrderEvent = e -> {
         orderFrame.setSize(new Dimension(400,600));
         orderFrame.setLocationRelativeTo(null);
         orderFrame.setLayout(new FlowLayout());
-
-        textArea.append("Hamburger\n");
-        textArea.append("Fries");
-        textArea.setEditable(false);
-        orderFrame.add(textArea);
+        orderFrame.add(createButton("Hamburger",100,40, ev -> {
+            MenuItem item = new Hamburger();
+            item.addTopping();
+            item.sumOfNutrients();
+            JTextArea textArea = new JTextArea();
+            textArea.setEditable(false);
+            textArea.append(item.toString());
+            textArea.append("Butts");
+            orderFrame.add(textArea);
+        }));
 
         orderFrame.setVisible(true);
     };
@@ -42,6 +57,9 @@ public class Window extends JFrame {
         checkoutFrame.setLocationRelativeTo(null);
         checkoutFrame.setVisible(true);
     };
+
+
+
 
 
 }

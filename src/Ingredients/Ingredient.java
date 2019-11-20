@@ -1,3 +1,5 @@
+package Ingredients;
+
 public class Ingredient {
     protected double serving_size;
     protected double calories;
@@ -38,7 +40,11 @@ public class Ingredient {
     public double getFat() {
         return fat*quantity;
     }
-   
+
+    public double getCholesterol() {
+        return cholesterol;
+    }
+
     public double getProtein() {
         return protein*quantity;
     }

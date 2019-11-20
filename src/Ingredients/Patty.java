@@ -1,6 +1,8 @@
+package Ingredients;
+
 public class Patty extends Ingredient {
 
-    Patty() {
+    public Patty() {
         calories = 71;
         fat = 5.6;
         carbohydrate = 0.0;

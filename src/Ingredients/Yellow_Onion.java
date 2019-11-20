@@ -1,6 +1,8 @@
+package Ingredients;
+
 public class Yellow_Onion extends Ingredient {
 
-    Yellow_Onion() {
+    public Yellow_Onion() {
         calories = 60;
         fat = 0.11;
         carbohydrate = 14.44;
