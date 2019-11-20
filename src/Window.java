@@ -24,8 +24,16 @@ public class Window extends JFrame {
     }
 
     private ActionListener OrderEvent = e -> {
+        JTextArea textArea = new JTextArea();
         orderFrame.setSize(new Dimension(400,600));
         orderFrame.setLocationRelativeTo(null);
+        orderFrame.setLayout(new FlowLayout());
+
+        textArea.append("Hamburger\n");
+        textArea.append("Fries");
+        textArea.setEditable(false);
+        orderFrame.add(textArea);
+
         orderFrame.setVisible(true);
     };
 
