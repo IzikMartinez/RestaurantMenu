@@ -2,7 +2,7 @@ import Ingredients.*;
 
 public class Fries extends MenuItem {
 
-    Fries() { mainIngredient = new Fries(); }
+    Fries() { mainIngredient = new Potato(); }
 
     @Override
     void addTopping(String ingredientName) {

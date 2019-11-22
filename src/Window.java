@@ -37,6 +37,15 @@ public class Window extends JFrame {
         System.out.println(item.toString());
     };
 
+    private ActionListener addFries = e -> {
+        MenuItem item = new Fries();
+        item.addTopping("Ketchup");
+        item.addTopping("Mustard");
+        item.sumOfNutrients();
+        label.setText(item.toString());
+        System.out.println(item.toString());
+    };
+
     private ActionListener addBurger = e -> {
         MenuItem item = new Hamburger();
 
