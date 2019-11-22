@@ -1,20 +1,27 @@
-import Ingredients.Ingredient;
-import Ingredients.Ketchup;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuItem {
+public abstract class MenuItem {
     Ingredient mainIngredient;
     private double calories, cholesterol, carbohydrates, fat, protein;
-    private List<Ingredient> toppings = new ArrayList<>();
+    protected List<Ingredient> toppings = new ArrayList<>();
     protected double price;
 
-    public void addTopping() {
-        toppings.add(new Ketchup());
-    }
-    public void removeTopping() {
-        toppings.remove(0);
+    public  abstract void addTopping(String ingredientName);
+    public void removeTopping(String ingredientName) {
+        int i = 0;
+        boolean foundFlag = false;
+
+        for(Ingredient topping: toppings) {
+            if(topping.getName().equals(ingredientName)) {
+                foundFlag = true;
+                break;
+            }
+            i++;
+        }
+
+        if(foundFlag)
+            toppings.remove(i);
     }
 
     public void sumOfNutrients() {
@@ -35,10 +42,10 @@ public class MenuItem {
     @Override
     public String toString() {
         return """
-        Calories: %s<br>
-        Carbohydrates: %s<br>
-        Fat: %s<br>
-        Protein: %s<br>
+        Calories: %.1f<br>
+        Carbohydrates: %.1f<br>
+        Fat: %.1f<br>
+        Protein: %.1f<br>
                """.formatted(calories,carbohydrates,fat,protein);
     }
 

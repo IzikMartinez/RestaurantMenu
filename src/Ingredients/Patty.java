@@ -1,9 +1,11 @@
-package Ingredients;
-
 public class Patty extends Ingredient {
 
     public Patty() {
-        super(71.0,0.0,4.8,5.6, 19.9);
-        serving_size = 1;
+        calories = 71*3;
+        fat = 5.6*3;
+        carbohydrate = 0.0;
+        protein = 4.8*3;
+        serving_size = "3oz";
+        cholesterol = 19.9*3;
     }
 }

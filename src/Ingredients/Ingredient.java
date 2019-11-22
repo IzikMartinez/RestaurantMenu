@@ -1,24 +1,26 @@
-package Ingredients;
-
-public class Ingredient {
-    protected double serving_size;
+class Ingredient {
+    protected String serving_size;
     protected double calories;
     protected double carbohydrate;
     protected double protein;
     protected double fat;
     protected double cholesterol;
+    protected String name;
 
-    Ingredient() {}
+    Ingredient() {
+    }
 
-    Ingredient(double calories, double carbohydrate, double protein, double fat, double cholesterol) {
+    Ingredient(double calories, double carbohydrate, double protein, double fat, String name) {
         this.calories = calories;
         this.carbohydrate = carbohydrate;
         this.protein = protein;
         this.fat = fat;
-        this.cholesterol = cholesterol;
+        this.name = name;
     }
 
-    public void setServings(int quantity) {
+
+    public String getName() {
+        return name;
     }
 
     public double getCalories() {
