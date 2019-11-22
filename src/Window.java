@@ -12,7 +12,7 @@ public class Window extends JFrame {
         setSize(new Dimension(700,900));
         setLocationRelativeTo(null);
         add(createButton("Add To Order", 150,40, OrderEvent));
-        add(createButton("Check Out", 200,40, CheckOutEvent));
+        add(createButton("Check Out", 200,40, addBurger));
     }
 
 
@@ -23,33 +23,38 @@ public class Window extends JFrame {
         return button;
     }
 
+
+    private ActionListener addIngredient = e -> {
+
+    };
+
+    private ActionListener removeIngredient = e -> {
+
+    };
+
+
     private ActionListener addBurger = e -> {
         MenuItem item = new Hamburger();
         item.addTopping();
         item.sumOfNutrients();
-        JTextArea textArea = new JTextArea();
-        textArea.setEditable(false);
-        textArea.append(item.toString());
-        textArea.setVisible(true);
-        orderFrame.add(textArea);
+        System.out.println(item.toString());
+        JLabel label = new JLabel("<html>" + item.toString() + "</html>");
+        orderFrame.add(label);
+        orderFrame.add(createButton("Add Topping", 150,40, addIngredient));
+        orderFrame.add(createButton("Remove Ingredient", 150, 40, removeIngredient));
+        orderFrame.setLocationRelativeTo(null);
+        orderFrame.setSize(400,400);
+        orderFrame.setVisible(true);
     };
 
     private ActionListener OrderEvent = e -> {
         orderFrame.setSize(new Dimension(400,600));
         orderFrame.setLocationRelativeTo(null);
         orderFrame.setLayout(new FlowLayout());
-        orderFrame.add(createButton("Hamburger",100,40, ev -> {
-            MenuItem item = new Hamburger();
-            item.addTopping();
-            item.sumOfNutrients();
-            JTextArea textArea = new JTextArea();
-            textArea.setEditable(false);
-            textArea.append(item.toString());
-            textArea.append("Butts");
-            orderFrame.add(textArea);
-        }));
+        orderFrame.add(createButton("Hamburger",100,40, addBurger));
 
         orderFrame.setVisible(true);
+        orderFrame.repaint();
     };
 
     private ActionListener CheckOutEvent = e -> {
@@ -57,8 +62,6 @@ public class Window extends JFrame {
         checkoutFrame.setLocationRelativeTo(null);
         checkoutFrame.setVisible(true);
     };
-
-
 
 
 

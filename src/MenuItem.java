@@ -33,12 +33,12 @@ public class MenuItem {
 
     @Override
     public String toString() {
-        return "MenuItem{" +
-                "calories=" + calories +
-                ", cholesterol=" + cholesterol +
-                ", carbohydrates=" + carbohydrates +
-                ", fat=" + fat +
-                ", protein=" + protein +
-                '}';
+
+        return """
+        Calories: %s<br>
+        Carbohydrates: %s<br>
+        Fat: %s<br>
+        Protein: %s<br>
+               """.formatted(calories,carbohydrates,fat,protein);
     }
 }

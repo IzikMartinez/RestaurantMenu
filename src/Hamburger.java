@@ -1,4 +1,3 @@
-import Ingredients.Ingredient;
 import Ingredients.Patty;
 
 
