@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 public class Window extends JFrame {
     private JFrame orderFrame = new JFrame("Order");
     private JFrame checkoutFrame = new JFrame("Check Out");
+    private JLabel label = new JLabel();
     Window() {
         super("Eddie's burgers");
         setLayout(new FlowLayout());
@@ -25,31 +26,23 @@ public class Window extends JFrame {
 
     private ActionListener addBurger = e -> {
         MenuItem item = new Hamburger();
-        item.addTopping();
+
+        item.addTopping("Ketchup");
+        item.addTopping("Tomato");
+        item.removeTopping("Ketchup");
         item.sumOfNutrients();
-        JTextArea textArea = new JTextArea();
-        textArea.setEditable(false);
-        textArea.append(item.toString());
-        textArea.setVisible(true);
-        orderFrame.add(textArea);
+        label.setText(item.toString());
+        System.out.println(item.toString());
     };
 
     private ActionListener OrderEvent = e -> {
         orderFrame.setSize(new Dimension(400,600));
         orderFrame.setLocationRelativeTo(null);
         orderFrame.setLayout(new FlowLayout());
-        orderFrame.add(createButton("Hamburger",100,40, ev -> {
-            MenuItem item = new Hamburger();
-            item.addTopping();
-            item.sumOfNutrients();
-            JTextArea textArea = new JTextArea();
-            textArea.setEditable(false);
-            textArea.append(item.toString());
-            textArea.append("Butts");
-            orderFrame.add(textArea);
-        }));
-
         orderFrame.setVisible(true);
+        orderFrame.add(createButton("Hamburger",100,40, addBurger));
+        orderFrame.add(label);
+
     };
 
     private ActionListener CheckOutEvent = e -> {
