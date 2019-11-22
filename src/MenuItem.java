@@ -8,6 +8,7 @@ public class MenuItem {
     Ingredient mainIngredient;
     private double calories, cholesterol, carbohydrates, fat, protein;
     private List<Ingredient> toppings = new ArrayList<>();
+    protected double price;
 
     public void addTopping() {
         toppings.add(new Ketchup());
@@ -33,12 +34,19 @@ public class MenuItem {
 
     @Override
     public String toString() {
-
         return """
         Calories: %s<br>
         Carbohydrates: %s<br>
         Fat: %s<br>
         Protein: %s<br>
                """.formatted(calories,carbohydrates,fat,protein);
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
