@@ -8,6 +8,6 @@ public class Yellow_Onion extends Ingredient {
         carbohydrate = 14.44;
         protein = 1.31;
         cholesterol = 0;
-        serving_size = 1;
+        serving_size = "1 medium";
     }
 }
