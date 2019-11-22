@@ -2,11 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Window extends JFrame {
     private JFrame orderFrame = new JFrame("Order");
     private JFrame checkoutFrame = new JFrame("Check Out");
     private JLabel label = new JLabel();
+
     Window() {
         super("Eddie's burgers");
         setLayout(new FlowLayout());
@@ -71,10 +73,8 @@ public class Window extends JFrame {
         checkoutFrame.setSize(new Dimension(400,600));
         checkoutFrame.setLocationRelativeTo(null);
         checkoutFrame.setVisible(true);
+
     };
-
-
-
 
 
 }

@@ -3,11 +3,11 @@ package Ingredients;
 public class Chili extends Ingredient {
 
     public Chili() {
-        calories = ;
-        fat = ;
-        carbohydrate = ;
-        protein = ;
-        serving_size = ;
-        cholesterol = ;
+        calories = 25;
+        fat = .8;
+        carbohydrate = 2.3;
+        protein = 2.5;
+        serving_size = ".8 oz";
+        cholesterol = 13.2;
     }
 }

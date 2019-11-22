@@ -2,7 +2,11 @@ import Ingredients.*;
 
 public class Hotdog extends MenuItem {
 
-    Hotdog() { mainIngredient = new Weiner();}
+    Hotdog()
+    {
+        mainIngredient = new Weiner();
+        price = 2.35;
+    }
 
     @Override
     void addTopping(String ingredientName) {
