@@ -24,6 +24,19 @@ public class Window extends JFrame {
         return button;
     }
 
+    private ActionListener addHotdog = e -> {
+        MenuItem item = new Hotdog();
+
+        item.addTopping("Ketchup");
+        item.addTopping("Mustard");
+        item.addTopping("Cheese");
+        item.addTopping("Chili");
+        item.addTopping("Onion");
+        item.sumOfNutrients();
+        label.setText(item.toString());
+        System.out.println(item.toString());
+    };
+
     private ActionListener addBurger = e -> {
         MenuItem item = new Hamburger();
 

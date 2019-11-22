@@ -45,10 +45,10 @@ public abstract class MenuItem {
     public String toString() {
         return """
         <html>
-        Calories: %s<br>
-        Carbohydrates: %s<br>
-        Fat: %s<br>
-        Protein: %s<br>
+        Calories: %.1f<br>
+        Carbohydrates: %.1f<br>
+        Fat: %.1f<br>
+        Protein: %.1f<br>
         </html>
                 """.formatted(calories,carbohydrates,fat,protein);
     }
