@@ -20,14 +20,6 @@ public class Ingredient {
         this.name = name;
     }
 
-    public void printNutrition() {
-        System.out.printf("\nCalories: %.2f\n" +
-                "Carbohydrates: %.2fg\nProtein: %.2fg\n" +
-                "Fat: %.2fg\n", calories, carbohydrate, protein, fat);
-    }
-
-    public void setServings(int quantity) {
-    }
 
     public String getName() {
         return name;
