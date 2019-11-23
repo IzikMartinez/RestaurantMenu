@@ -9,8 +9,7 @@ public class Ingredient {
     protected double cholesterol;
     protected String name;
 
-    Ingredient() {
-    }
+    Ingredient() {}
 
     Ingredient(double calories, double carbohydrate, double protein, double fat, String name) {
         this.calories = calories;
