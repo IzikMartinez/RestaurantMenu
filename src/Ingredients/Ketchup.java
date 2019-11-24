@@ -3,6 +3,7 @@ package Ingredients;
 public class Ketchup extends Ingredient {
 
     public Ketchup() {
-        super(233, 60.4, 4.2, 0.7, "Ketchup");
+        super(113, 30.4, 2.2, 0.3, "Ketchup");
+        serving_size ="1oz";
     }
 }

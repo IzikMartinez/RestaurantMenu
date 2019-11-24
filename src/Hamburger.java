@@ -3,7 +3,8 @@ import Ingredients.*;
 public class Hamburger extends MenuItem{
 
     Hamburger() {
-        mainIngredient = new Patty();
+        mainIngredient.add(new Patty());
+        mainIngredient.add(new HamburgerBun());
         price = 6.70;
         name = "Hamburger";
         validToppings.add("Ketchup");

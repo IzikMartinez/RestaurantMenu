@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class MenuItem {
-    Ingredient mainIngredient;
+    List<Ingredient> mainIngredient = new ArrayList<>();
     List<Ingredient> toppings = new ArrayList<>();
     List<String> validToppings = new ArrayList<>();
 
@@ -15,19 +15,24 @@ public abstract class MenuItem {
     private boolean addedFlag = false;
 
     MenuItem() {
-
     }
 
     void initializeNutrients() {
-        calories = mainIngredient.getCalories();
-        carbohydrates = mainIngredient.getCarbs();
-        fat = mainIngredient.getFat();
-        protein = mainIngredient.getProtein();
-        cholesterol = mainIngredient.getCholesterol();
+        calories =0; carbohydrates=0; fat=0; protein=0; cholesterol=0;
+        for(Ingredient element : mainIngredient) {
+            calories += element.getCalories();
+            carbohydrates += element.getCarbs();
+            fat += element.getFat();
+            protein += element.getProtein();
+            cholesterol += element.getCholesterol();
+        }
 
     }
 
+
     public abstract void addTopping(String ingredientName);
+
+
     public void removeTopping(String ingredientName) {
         int i = 0;
         boolean foundFlag = false;
@@ -39,14 +44,13 @@ public abstract class MenuItem {
             }
             i++;
         }
-
         if(foundFlag)
             toppings.remove(i);
     }
 
+
     void sumOfNutrients() {
         if(!toppings.isEmpty()) {
-            //calories =0; carbohydrates=0; fat=0; protein=0; cholesterol=0;
             initializeNutrients();
             for (Ingredient topping : toppings) {
                 calories += topping.getCalories();
@@ -58,14 +62,15 @@ public abstract class MenuItem {
         }
     }
 
+
     @Override
     public String toString() {
         return """
         <html>
-        Calories: %.1f<br>
-        Carbohydrates: %.1f<br>
-        Fat: %.1f<br>
-        Protein: %.1f<br>
+        Calories: %.1f Cal<br>
+        Carbohydrates: %.1fg<br>
+        Fat: %.1fg<br>
+        Protein: %.1fg<br>
         </html>
                """.formatted(calories,carbohydrates,fat,protein);
     }
@@ -88,5 +93,17 @@ public abstract class MenuItem {
 
     public List<String> getValidToppings() {
         return validToppings;
+    }
+
+    public String getToppings() {
+        String toppingList = "";
+        if (!toppings.isEmpty()) {
+            toppingList = "<br> <blockquote>";
+            for (Ingredient topping : toppings) {
+                toppingList += topping.getName() + "<br>";
+            }
+            toppingList += "</blockquote>";
+        }
+        return toppingList;
     }
 }

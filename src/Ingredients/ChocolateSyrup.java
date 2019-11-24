@@ -9,6 +9,7 @@ public class ChocolateSyrup extends Ingredient {
         protein = .8;
         cholesterol = 0;
 		serving_size = "2 tbsp";
+		name ="Chocolate Syrup";
 
     }
 }

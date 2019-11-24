@@ -4,7 +4,7 @@ import Ingredients.*;
 public class IceCreamSundae extends MenuItem{
 
     IceCreamSundae() {
-        mainIngredient = new Ingredient(137,7,16,2.3, "Ice Cream");
+        mainIngredient.add(new Ingredient(137,7,16,2.3, "Ice Cream"));
 		price = 4.50;
 		name = "Ice Cream Sundae";
         validToppings.add("Chocolate Syrup");
