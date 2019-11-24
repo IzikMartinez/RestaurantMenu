@@ -1,5 +1,6 @@
 package Ingredients;
-
+//This is the main ingredient for fries in the Ingredients package.
+//Includes the nutrition values of it.
 public class Potato extends Ingredient {
     public Potato() {
         calories = 365;

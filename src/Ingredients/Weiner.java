@@ -1,5 +1,6 @@
 package Ingredients;
-
+//This is the main ingredient for hot dog in the Ingredients package.
+//Includes the nutrition values of it.
 public class Weiner  extends Ingredient {
 
     public Weiner() {

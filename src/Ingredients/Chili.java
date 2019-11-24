@@ -1,5 +1,6 @@
 package Ingredients;
-
+//This is a topping option for the ingredient package.
+//Includes all the nutrition value of it
 public class Chili extends Ingredient {
 
     public Chili() {

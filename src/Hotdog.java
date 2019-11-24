@@ -1,5 +1,5 @@
 import Ingredients.*;
-
+//This is a menu food option for customers
 public class Hotdog extends MenuItem {
 
     Hotdog()
@@ -11,6 +11,7 @@ public class Hotdog extends MenuItem {
     @Override
     void addTopping(String ingredientName) {
         switch (ingredientName) {
+            //Various toppings customers can add to their hot dog
             case "Ketchup" -> toppings.add(new Ketchup());
             case "Mustard" -> toppings.add(new Mustard());
             case "Cheese" -> toppings.add(new Chesse());
