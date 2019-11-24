@@ -28,6 +28,8 @@ public class Window extends JFrame {
         add(createMenuItemButton("Hamburger", 120));	//create button for
         add(createMenuItemButton("Ice Cream", 150));
         add(createMenuItemButton("Chicken Strips", 150));
+        add(createMenuItemButton("Hot Dog", 150));
+        add(createMenuItemButton("Fries",150));
         add(createButton("Check Out", 200, CheckOutEvent));
         nutritionPanel.add(nutritionLabel);
         toppingFrame.setLayout(new FlowLayout());
@@ -52,6 +54,9 @@ public class Window extends JFrame {
                 case "Hamburger" -> purchased.add(new Hamburger());
                 case "Ice Cream" -> purchased.add(new IceCreamSundae());
                 case "Chicken Strips" -> purchased.add(new ChickenStrips());
+                case "Hot Dog" -> purchased.add(new Hotdog());
+                case "Fries" -> purchased.add(new Fries());
+
             }
             purchasedAmount++;
             purchased.get(purchasedAmount).flipFlag();

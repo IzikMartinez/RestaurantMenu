@@ -4,18 +4,25 @@ public class Hotdog extends MenuItem {
 
     Hotdog()
     {
-        mainIngredient = new Weiner();
+        mainIngredient.add(
+                new Ingredient(40*1.7, 3*1.7, 5*1.7, 0.5*1.7, "Wiener"));
         price = 2.35;
+        name = "Hot Dog";
+        validToppings.add(("Ketchup"));
+        validToppings.add(("Mustard"));
+        validToppings.add(("Cheese"));
+        validToppings.add(("Chili"));
+        validToppings.add("Relish");
     }
 
     @Override
-    void addTopping(String ingredientName) {
+    public void addTopping(String ingredientName) {
         switch (ingredientName) {
             case "Ketchup" -> toppings.add(new Ketchup());
             case "Mustard" -> toppings.add(new Mustard());
             case "Cheese" -> toppings.add(new Chesse());
             case "Chili" -> toppings.add(new Chili());
-            case "Onion" -> toppings.add(new Yellow_Onion());
+            case "Relish" -> toppings.add(new Relish());
         }
     }
 }
