@@ -5,6 +5,13 @@ public class Hamburger extends MenuItem{
     Hamburger() {
         mainIngredient = new Patty();
         price = 6.70;
+        name = "Hamburger";
+        validToppings.add("Ketchup");
+        validToppings.add("Lettuce");
+        validToppings.add("Tomato");
+        validToppings.add("Mustard");
+        validToppings.add("Pickles");
+
     }
 
     @Override

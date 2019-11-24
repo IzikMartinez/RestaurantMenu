@@ -3,13 +3,21 @@ import Ingredients.*;
 
 public class ChickenStrips extends MenuItem{
 
-    ChickenStrips() {	
-        mainIngredient = (185,11,10,11,.0029, "Chicken Strips");		// set main ingredient to chicken strips
-		serving_size = "4 strips";
+    ChickenStrips() {
+
+        // set main ingredient to chicken strips
+        mainIngredient.setCalories(185);
+        mainIngredient.setCarbohydrate(11);
+        mainIngredient.setProtein(10);
+        mainIngredient.setFat(11);
+        mainIngredient.setName("Chicken Strips");
+        price = 5.23;
+        name = "Chicken Strips";
+		//"4 strips";
     }	
 
     @Override
-    void addTopping(String ingredientName) {			//all possible toppings for chicken strips
+    public void addTopping(String ingredientName) {			//all possible toppings for chicken strips
         switch (ingredientName) {
             case "Lettuce" -> toppings.add(new Lettuce());	//add lettuce to burger
             case "Tomato" -> toppings.add(new Tomato());	//add tomato to burger

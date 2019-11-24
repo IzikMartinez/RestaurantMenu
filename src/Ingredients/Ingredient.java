@@ -11,7 +11,7 @@ public class Ingredient {
 
     Ingredient() {}
 
-    Ingredient(double calories, double carbohydrate, double protein, double fat, String name) {
+    public Ingredient(double calories, double carbohydrate, double protein, double fat, String name) {
         this.calories = calories;
         this.carbohydrate = carbohydrate;
         this.protein = protein;
@@ -44,4 +44,23 @@ public class Ingredient {
         return protein;
     }
 
+    public void setCalories(double calories) {
+        this.calories = calories;
+    }
+
+    public void setCarbohydrate(double carbohydrate) {
+        this.carbohydrate = carbohydrate;
+    }
+
+    public void setProtein(double protein) {
+        this.protein = protein;
+    }
+
+    public void setFat(double fat) {
+        this.fat = fat;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

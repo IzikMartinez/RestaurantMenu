@@ -10,7 +10,5 @@ public class WhippedCream extends Ingredient {
         cholesterol = .0046;
 		
 		serving_size = "2 tbsp";
-		price = .59;
-
     }
 }

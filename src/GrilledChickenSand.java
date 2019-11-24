@@ -1,5 +1,5 @@
 import Ingredients.*;
-
+/*
 
 public class GrilledChickenSand extends MenuItem{
 
@@ -8,7 +8,7 @@ public class GrilledChickenSand extends MenuItem{
     }	
 
     @Override
-    void addTopping(String ingredientName) {	//all possible ingredients for chicken sandwich
+    public void addTopping(String ingredientName) {	//all possible ingredients for chicken sandwich
         switch (ingredientName) {
             case "Lettuce" -> toppings.add(new Lettuce());	//add lettuce to burger
 			case "Ketchup" -> toppings.add(new Ketchup());	//ketchup
@@ -23,4 +23,8 @@ public class GrilledChickenSand extends MenuItem{
         }
 
     }
+
+
 }
+
+ */

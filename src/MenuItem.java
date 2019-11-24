@@ -5,11 +5,29 @@ import java.util.List;
 
 public abstract class MenuItem {
     Ingredient mainIngredient;
-    private double calories, cholesterol, carbohydrates, fat, protein;
-    protected List<Ingredient> toppings = new ArrayList<>();
-    protected double price;
+    List<Ingredient> toppings = new ArrayList<>();
+    List<String> validToppings = new ArrayList<>();
 
-    public  abstract void addTopping(String ingredientName);
+    private double calories, cholesterol, carbohydrates, fat, protein;
+    double price;
+    String name;
+
+    private boolean addedFlag = false;
+
+    MenuItem() {
+
+    }
+
+    void initializeNutrients() {
+        calories = mainIngredient.getCalories();
+        carbohydrates = mainIngredient.getCarbs();
+        fat = mainIngredient.getFat();
+        protein = mainIngredient.getProtein();
+        cholesterol = mainIngredient.getCholesterol();
+
+    }
+
+    public abstract void addTopping(String ingredientName);
     public void removeTopping(String ingredientName) {
         int i = 0;
         boolean foundFlag = false;
@@ -26,28 +44,29 @@ public abstract class MenuItem {
             toppings.remove(i);
     }
 
-    public void sumOfNutrients() {
-        for(Ingredient topping: toppings) {
-            calories += topping.getCalories();
-            carbohydrates += topping.getCarbs();
-            fat += topping.getFat();
-            protein += topping.getProtein();
-            cholesterol += topping.getCholesterol();
+    void sumOfNutrients() {
+        if(!toppings.isEmpty()) {
+            //calories =0; carbohydrates=0; fat=0; protein=0; cholesterol=0;
+            initializeNutrients();
+            for (Ingredient topping : toppings) {
+                calories += topping.getCalories();
+                carbohydrates += topping.getCarbs();
+                fat += topping.getFat();
+                protein += topping.getProtein();
+                cholesterol += topping.getCholesterol();
+            }
         }
-        calories += mainIngredient.getCalories();
-        carbohydrates += mainIngredient.getCarbs();
-        fat += mainIngredient.getFat();
-        protein += mainIngredient.getProtein();
-        cholesterol += mainIngredient.getCholesterol();
     }
 
     @Override
     public String toString() {
         return """
+        <html>
         Calories: %.1f<br>
         Carbohydrates: %.1f<br>
         Fat: %.1f<br>
         Protein: %.1f<br>
+        </html>
                """.formatted(calories,carbohydrates,fat,protein);
     }
 
@@ -55,7 +74,19 @@ public abstract class MenuItem {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public String getName() {
+        return name;
+    }
+
+    public void flipFlag() {
+        addedFlag = !addedFlag;
+    }
+
+    public boolean isAddedFlag() {
+        return addedFlag;
+    }
+
+    public List<String> getValidToppings() {
+        return validToppings;
     }
 }
