@@ -13,10 +13,14 @@ import Ingredients.*;
 */
 public class Fries extends MenuItem {
 
-     /*** This method is used to add two integers. This is
-     * a the simplest form of a class method, just to
-     * show the usage of various javadoc Tags.
-     * @param calories is the first paramter to addNum method
+     /***
+     * This method initializes the nutritional values of the Fries menu item
+     * afterwards, it sets the price of the item, as well as its name. The name will be used for boolean checks
+     * in other objects within this project.
+     *
+     *  Finally, this method adds items to the ArrayList of valid toppings. This ArrayList will also be
+     *  used for boolean checks in other objects within the project.
+     * @param calories is the first parameter to addNum method
      * @param carbohydrate
      * @param protein
      * @param fat
