@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class Window extends JFrame {
     private JPanel menuButtonPanel_Row1 = new JPanel(); private JPanel menuButtonPanel_Row2 = new JPanel();
     private JPanel menuButtonPanel_Row3 = new JPanel();
     private JPanel comboPanel_1 = new JPanel();         private JPanel comboPanel_2 = new JPanel();
-    private JPanel removeButtonPanel =new JPanel();
+    private JPanel removeTextPanel = new JPanel();      private JPanel removeButtonPanel =new JPanel();
 
     private JLabel nutritionLabel =new JLabel();
     private JLabel checkoutLabel = new JLabel();
@@ -28,7 +29,7 @@ public class Window extends JFrame {
         setLayout(new FlowLayout());							//set layout
         setSize(new Dimension(500,600));						//set size of window
         setLocationRelativeTo(null);
-        eddieLabel.setText("<html><font size='7'>Eddie's Burgers & More</font></html>");
+        eddieLabel.setText("<html><span style=\"font-size: xx-large; \">Eddie's Burgers & More</span></html>");
         menuButtonPanel_Row1.setSize(400,200);
         menuButtonPanel_Row2.setSize(400,200);
         menuButtonPanel_Row3.setSize(400,200);
@@ -37,7 +38,7 @@ public class Window extends JFrame {
         comboPanel_1.setSize(400,200);
         comboPanel_2.setSize(400,200);
 
-        //Add panels to the main frame
+        //Add panels and labels to the main frame
         add(eddieLabel);
         add(menuButtonPanel_Row1);
         add(menuButtonPanel_Row2);
@@ -67,6 +68,10 @@ public class Window extends JFrame {
         toppingFrame.setLayout(new FlowLayout());
         toppingFrame.add(nutritionPanel);
         toppingFrame.add(buttonPanel);
+
+        checkoutFrame.setLayout(new FlowLayout());
+        checkoutFrame.setSize(new Dimension(400,600));
+        checkoutFrame.setLocationRelativeTo(null);
 
     }
 
@@ -176,24 +181,42 @@ public class Window extends JFrame {
         button.setSize(width,30);
         button.addActionListener(e -> {
             purchased.remove(index);
+            purchasedAmount--;
+            orderHelper();
+            checkoutFrame.repaint();
+
         });
         return button;
     }
 
     private ActionListener CheckOutEvent = e -> {
-        checkoutFrame.remove(checkoutLabel);
-        removeButtonPanel.removeAll();
-        checkoutFrame.remove(removeButtonPanel);
-        checkoutFrame.setLayout(new FlowLayout());
-        checkoutFrame.setSize(new Dimension(400,300));
-        checkoutFrame.setLocationRelativeTo(null);
-        List<JButton> removalButtons = new ArrayList<>();
 
-        String        priceTotal = "";
+
+        orderHelper();
+
+
+    };
+
+
+    private void orderHelper() {
+
+        checkoutFrame.remove(checkoutLabel);
+        checkoutLabel.setText("");
+        removeButtonPanel.removeAll();
+        removeTextPanel.removeAll();
+        checkoutFrame.remove(removeButtonPanel);
+
+
+
+        String        priceTotal;
         StringBuilder orderTotal = new StringBuilder();
         double        total      = 0;
+        List<JButton> removalButtons = new ArrayList<>();
+        JLabel label = new JLabel("");
+
 
         if(!purchased.isEmpty()) {
+            label.setText("<html>CLICK TO REMOVE ITEMS FROM YOUR CART</html>");
             int i = 0;
             for(MenuItem item : purchased) {
                 total += item.getPrice();
@@ -201,28 +224,27 @@ public class Window extends JFrame {
                 orderTotal.append(item.getName()).append(item.getToppings()).append("<br>");
                 i++;
             }
-            System.out.println(removalButtons.size());
             priceTotal = String.format("Total price is: $%.2f", total);
-        }
-
-        checkoutLabel.removeAll();
-        checkoutLabel.setText("""
+            checkoutLabel.setText("""
                 <html>
                 <span style="font-size: large; "> %s </span>
-                <br> %s
-                </html>
-                """.formatted(priceTotal, orderTotal));
-
+                <br>
+                <br> ITEMS IN CART <br>
+                %s
+                </html>""".formatted(priceTotal, orderTotal));
+        }
         checkoutFrame.add(checkoutLabel);
 
+        removeTextPanel.add(label);
         for(JButton button : removalButtons)
             removeButtonPanel.add(button);
+        removeButtonPanel.setMaximumSize(new Dimension(400,300));
+        removeButtonPanel.setLayout(new GridLayout());
+        checkoutFrame.add(removeTextPanel);
         checkoutFrame.add(removeButtonPanel);
         checkoutFrame.setVisible(true);
 
-    };
-
-
+    }
 
 
 }
