@@ -9,12 +9,14 @@ public class Window extends JFrame {
     private JFrame checkoutFrame = new JFrame("Check Out");		//create new object of JFrame type with text Check Out
 
     private JPanel buttonPanel = new JPanel();          private JPanel nutritionPanel = new JPanel();
-    private JPanel menuButtonPanel_Row1 = new JPanel();
-    private JPanel menuButtonPanel_Row2 = new JPanel(); private JPanel menuButtonPanel_Row3 = new JPanel();
+    private JPanel menuButtonPanel_Row1 = new JPanel(); private JPanel menuButtonPanel_Row2 = new JPanel();
+    private JPanel menuButtonPanel_Row3 = new JPanel();
     private JPanel comboPanel_1 = new JPanel();         private JPanel comboPanel_2 = new JPanel();
+    private JPanel removeButtonPanel =new JPanel();
 
     private JLabel nutritionLabel =new JLabel();
     private JLabel checkoutLabel = new JLabel();
+    private JLabel eddieLabel = new JLabel();
 
     private JTextArea comboDesc_combo1 = new JTextArea(); private JTextArea comboDesc_combo2 =new JTextArea();
 
@@ -24,16 +26,20 @@ public class Window extends JFrame {
     Window() {													//Default constructor for Window
         super("Eddie's burgers and more");								//Window title Eddies Burgers
         setLayout(new FlowLayout());							//set layout
-        setSize(new Dimension(500,900));						//set size of window
+        setSize(new Dimension(500,600));						//set size of window
         setLocationRelativeTo(null);
+        eddieLabel.setText("<html><font size='7'>Eddie's Burgers & More</font></html>");
         menuButtonPanel_Row1.setSize(400,200);
         menuButtonPanel_Row2.setSize(400,200);
         menuButtonPanel_Row3.setSize(400,200);
 
+        //Set the sizes of the panels that hold the combo options
         comboPanel_1.setSize(400,200);
         comboPanel_2.setSize(400,200);
-        add(menuButtonPanel_Row1);
 
+        //Add panels to the main frame
+        add(eddieLabel);
+        add(menuButtonPanel_Row1);
         add(menuButtonPanel_Row2);
         add(menuButtonPanel_Row3);
         add(comboPanel_1);
@@ -43,19 +49,19 @@ public class Window extends JFrame {
         menuButtonPanel_Row2.add(createMenuItemButton("Hamburger", 120));	//create button for
         menuButtonPanel_Row2.add(createMenuItemButton("Ice Cream", 150));
         menuButtonPanel_Row2.add(createMenuItemButton("Chicken Strips", 150));
-        menuButtonPanel_Row2.add(createMenuItemButton("Hot Dog", 150));
+        menuButtonPanel_Row3.add(createMenuItemButton("Hot Dog", 150));
         menuButtonPanel_Row3.add(createMenuItemButton("Fries",150));
         menuButtonPanel_Row3.add(createMenuItemButton("Drink",120));
 
+        comboPanel_1.add(createComboButton("Combo 1", 100));
         comboDesc_combo1.setEditable(false);
         comboDesc_combo1.append("Combo 1: Hamburger, Fries and a Medium Drink");
         comboPanel_1.add(comboDesc_combo1);
-        comboPanel_1.add(createComboButton("Combo 1", 100));
 
+        comboPanel_2.add(createComboButton("Combo 2", 100));
         comboDesc_combo2.setEditable(false);
         comboDesc_combo2.append("Combo 2: Hot Dog and a Medium Drink");
         comboPanel_2.add(comboDesc_combo2);
-        comboPanel_2.add(createComboButton("Combo 2", 100));
 
         nutritionPanel.add(nutritionLabel);
         toppingFrame.setLayout(new FlowLayout());
@@ -120,6 +126,11 @@ public class Window extends JFrame {
 
     private JButton createComboButton(String name, int width) {
         JButton button = new JButton(name);
+        JFrame frame=new JFrame();
+        JLabel label =new JLabel();
+        frame.setSize(80,100);
+        frame.setLocationRelativeTo(null);
+        frame.add(label);
         button.setSize(width, 50);
         button.addActionListener(e -> {
 
@@ -128,11 +139,15 @@ public class Window extends JFrame {
                     purchased.add(new Hamburger());
                     purchased.add(new Fries());
                     purchased.add(new Drink());
+                    label.setText("Combo 1 added!");
+                    frame.setVisible(true);
                     purchasedAmount+=3;
                 }
                 case "Combo 2" -> {
                     purchased.add(new Hotdog());
                     purchased.add(new Drink());
+                    label.setText("Combo 2 added!");
+                    frame.setVisible(true);
                     purchasedAmount+=2;
                 }
             }
@@ -156,10 +171,23 @@ public class Window extends JFrame {
         return button;
     }
 
+    private JButton createRemoveIngredientButton(String name, int width, int index) {
+        JButton button = new JButton(name);
+        button.setSize(width,30);
+        button.addActionListener(e -> {
+            purchased.remove(index);
+        });
+        return button;
+    }
+
     private ActionListener CheckOutEvent = e -> {
         checkoutFrame.remove(checkoutLabel);
+        removeButtonPanel.removeAll();
+        checkoutFrame.remove(removeButtonPanel);
+        checkoutFrame.setLayout(new FlowLayout());
         checkoutFrame.setSize(new Dimension(400,300));
         checkoutFrame.setLocationRelativeTo(null);
+        List<JButton> removalButtons = new ArrayList<>();
 
         String        priceTotal = "";
         StringBuilder orderTotal = new StringBuilder();
@@ -169,9 +197,11 @@ public class Window extends JFrame {
             int i = 0;
             for(MenuItem item : purchased) {
                 total += item.getPrice();
+                removalButtons.add(createRemoveIngredientButton(item.getName(), 100, i));
                 orderTotal.append(item.getName()).append(item.getToppings()).append("<br>");
                 i++;
             }
+            System.out.println(removalButtons.size());
             priceTotal = String.format("Total price is: $%.2f", total);
         }
 
@@ -185,6 +215,9 @@ public class Window extends JFrame {
 
         checkoutFrame.add(checkoutLabel);
 
+        for(JButton button : removalButtons)
+            removeButtonPanel.add(button);
+        checkoutFrame.add(removeButtonPanel);
         checkoutFrame.setVisible(true);
 
     };
