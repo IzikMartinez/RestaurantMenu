@@ -20,11 +20,6 @@ public class Fries extends MenuItem {
      *
      *  Finally, this method adds items to the ArrayList of valid toppings. This ArrayList will also be
      *  used for boolean checks in other objects within the project.
-     * @param calories is the first parameter to addNum method
-     * @param carbohydrate
-     * @param protein
-     * @param fat
-     * @param name
      */
     Fries()
     {
